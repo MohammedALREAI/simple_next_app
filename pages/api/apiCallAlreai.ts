@@ -21,12 +21,19 @@ export default async function handler(
       optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
     });
 
-    console.log("url=====>>>>>>>", req.body);
-    //     const responseData = await fetch(`http://aiph.me:8000/api${url}`);
+    var requestOptions = {
+      method: "POST",
+      body: url,
+    };
 
-    //     const dataToJson = await responseData.json();
+    const responseData = await fetch(
+      `http://aiph.me:8000/api/${url}`,
+      requestOptions
+    );
 
-    res.status(200).json({dataToJson: []});
+    const dataToJson = await responseData.json();
+
+    res.status(200).json({dataToJson: dataToJson});
   } catch (error) {
     console.log("error", error);
   }
