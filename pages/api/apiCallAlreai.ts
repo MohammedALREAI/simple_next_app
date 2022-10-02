@@ -13,7 +13,6 @@ export default async function handler(
   try {
     const {url} = req.body;
 
-    console.log("url=====>>>>>>>", url);
     await NextCors(req, res, {
       // Options
       methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
@@ -26,8 +25,7 @@ export default async function handler(
       body: url,
     };
 
-    const responseData = await fetch(
-      `http://aiph.me:8000/api/${url}`,
+    const responseData = await fetch(`${url}`,
       requestOptions
     );
 
